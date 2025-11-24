@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrapoPlace - Transform Waste into Value</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2ecc71;
+            --secondary-color: #27ae60;
+            --accent-color: #3498db;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/seed/recycling/1600/800.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .hero-buttons {
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .hero-buttons .btn {
+            margin: 0 10px;
+            padding: 12px 25px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .category-tab {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: var(--white);
+            border: 2px solid var(--primary-color);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .category-tab.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .category-tab:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+        
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .category-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .category-content {
+            padding: 20px;
+        }
+        
+        .category-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .category-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .category-price span {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        .category-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .category-btn {
+            width: 100%;
+            padding: 8px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .category-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 0 15px;
+            position: relative;
+        }
+        
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10px;
+            width: 20px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* User Types Section */
+        .user-types {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .user-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .user-type-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .user-type-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .user-type-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .consumer-img {
+            background-image: url('https://picsum.photos/seed/consumer/600/400.jpg');
+        }
+        
+        .collector-img {
+            background-image: url('https://picsum.photos/seed/collector/600/400.jpg');
+        }
+        
+        .industry-img {
+            background-image: url('https://picsum.photos/seed/industry/600/400.jpg');
+        }
+        
+        .user-type-content {
+            padding: 25px;
+        }
+        
+        .user-type-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        .user-type-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .user-type-content ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-type-content ul li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(46, 204, 113, 0.9), rgba(46, 204, 113, 0.9)), url('https://picsum.photos/seed/green/1600/600.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta .btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .step {
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-buttons .btn {
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+            
+            .categories-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-recycle"></i>
+                <span>ScrapoPlace</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#user-types">User Types</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="login_selection.html" class="btn btn-primary" onclick="window.location.href='login_selection.html'">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Transform Waste into Value with ScrapoPlace</h1>
+            <p>Streamline your waste management process by scheduling pickups, categorizing recyclables, and connecting with industries that need your scrap materials.</p>
+            <div class="hero-buttons">
+                <a href="signupselection.html" class="btn btn-primary">Sign Up as Consumer</a>
+                <a href="collectorsignup.html" class="btn btn-outline">Sign Up as Collector</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose ScrapoPlace?</h2>
+                <p>Our platform offers a comprehensive solution for sustainable waste management that benefits both individuals and industries.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Easy Scheduling</h3>
+                    <p>Schedule scrap pickups at your convenience with just a few clicks. Choose your preferred date, time, and location.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-Time Tracking</h3>
+                    <p>Track your pickup requests in real-time from submission to collection. Stay informed every step of the way.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Industry Connection</h3>
+                    <p>Directly connect with industries that need recycled materials, creating a sustainable circular economy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <h3>Earn from Waste</h3>
+                    <p>Turn your scrap into cash. Get fair prices for your recyclable materials and contribute to the economy.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Environmental Impact</h3>
+                    <p>Reduce landfill waste and promote recycling. Make a positive impact on the environment with every pickup.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>User-Friendly</h3>
+                    <p>Our intuitive interface makes waste management simple and accessible for everyone, anywhere, anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Scrap Categories</h2>
+                <p>Browse through our wide range of recyclable materials and turn your waste into valuable resources.</p>
+            </div>
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">All Categories</div>
+                <div class="category-tab" data-category="metal">Metals</div>
+                <div class="category-tab" data-category="plastic">Plastics</div>
+                <div class="category-tab" data-category="paper">Paper</div>
+                <div class="category-tab" data-category="electronic">E-Waste</div>
+                <div class="category-tab" data-category="glass">Glass</div>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" data-category="metal">
+                    <div class="category-img" style="background-image: url('https://tse2.mm.bing.net/th/id/OIP.VrBuUGBHP25DmLzPvYB_hQHaFj?pid=Api&P=0&h=180');">
+                        <div class="category-badge">Best Price</div>
+                    </div>
+                    <div class="category-content">
+                        <h3>Iron & Steel</h3>
+                        <div class="category-price">₹25-30 <span>per kg</span></div>
+                        <p class="category-description">All types of iron and steel scrap including household items, construction materials, and industrial waste.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="metal">
+                    <div class="category-img" style="background-image: url('https://tse1.mm.bing.net/th/id/OIP.tG_hoDOOPOPQXyyS4cSF7gHaD5?pid=Api&P=0&h=180');">
+                        <div class="category-badge">Premium</div>
+                    </div>
+                    <div class="category-content">
+                        <h3>Copper</h3>
+                        <div class="category-price">₹650-700 <span>per kg</span></div>
+                        <p class="category-description">Copper wires, pipes, and other copper materials from electrical and plumbing applications.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="metal">
+                    <div class="category-img" style="background-image: url('https://tse1.mm.bing.net/th/id/OIP.5UErPn6PpGuwI3h7wfy8FAHaGL?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Aluminum</h3>
+                        <div class="category-price">₹120-150 <span>per kg</span></div>
+                        <p class="category-description">Aluminum cans, foils, utensils, and other aluminum products for recycling.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="plastic">
+                    <div class="category-img" style="background-image: url('https://tse3.mm.bing.net/th/id/OIP.S-w1y4JbHU5i7Ly4InGCyAHaF6?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>PET Bottles</h3>
+                        <div class="category-price">₹15-20 <span>per kg</span></div>
+                        <p class="category-description">Plastic water bottles, beverage containers, and other PET plastic materials.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="plastic">
+                    <div class="category-img" style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.9kjxN2Hpnm-eGTO5DdhLHwHaHa?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Plastic Bags</h3>
+                        <div class="category-price">₹10-12 <span>per kg</span></div>
+                        <p class="category-description">HDPE and LDPE plastic bags, packaging materials, and other plastic films.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="paper">
+                    <div class="category-img" style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.sQ4He_dDGxYjwUxH2YYliAHaEi?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Newspaper</h3>
+                        <div class="category-price">₹12-15 <span>per kg</span></div>
+                        <p class="category-description">Old newspapers, magazines, and other paper publications for recycling.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="paper">
+                    <div class="category-img" style="background-image: url('https://tse1.mm.bing.net/th/id/OIP._-pnx_4fTYHbh9jmQ9chQwHaE7?pid=Api&P=0&h=180');">
+                        <div class="category-badge">High Demand</div>
+                    </div>
+                    <div class="category-content">
+                        <h3>Cardboard</h3>
+                        <div class="category-price">₹8-10 <span>per kg</span></div>
+                        <p class="category-description">Packaging boxes, corrugated cardboard, and other paperboard materials.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="electronic">
+                    <div class="category-img" style="background-image: url('https://tse1.mm.bing.net/th/id/OIP.RuiNuOtBEkhNIEcbAJrEXAHaFO?pid=Api&P=0&h=180');">
+                        <div class="category-badge">Special Handling</div>
+                    </div>
+                    <div class="category-content">
+                        <h3>Computer Parts</h3>
+                        <div class="category-price">₹200-500 <span>per item</span></div>
+                        <p class="category-description">Old computers, laptops, motherboards, and other electronic components.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="electronic">
+                    <div class="category-img" style="background-image: url('https://tse3.mm.bing.net/th/id/OIP.AbQcDlKqy878yEw5BRgE7gHaEo?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Mobile Phones</h3>
+                        <div class="category-price">₹100-300 <span>per item</span></div>
+                        <p class="category-description">Old mobile phones, chargers, batteries, and mobile accessories.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="glass">
+                    <div class="category-img" style="background-image: url('https://tse3.mm.bing.net/th/id/OIP.Q9nfBhGoECzTb0xPykpg1AHaFj?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Glass Bottles</h3>
+                        <div class="category-price">₹2-3 <span>per piece</span></div>
+                        <p class="category-description">Beer bottles, wine bottles, and other glass containers for recycling.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="metal">
+                    <div class="category-img" style="background-image: url('https://tse1.mm.bing.net/th/id/OIP.mOM6gTyqsM-yJ0yuwukKVQHaE7?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Brass</h3>
+                        <div class="category-price">₹350-400 <span>per kg</span></div>
+                        <p class="category-description">Brass utensils, decorative items, and other brass alloys for recycling.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="plastic">
+                    <div class="category-img" style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.poeHsBbYUmcI3sKCdAt5fgHaHa?pid=Api&P=0&h=180');">
+                    </div>
+                    <div class="category-content">
+                        <h3>Mixed Plastic</h3>
+                        <div class="category-price">₹8-10 <span>per kg</span></div>
+                        <p class="category-description">Various types of plastic items including toys, containers, and household items.</p>
+                        <button class="category-btn">Schedule Pickup</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>Our simple four-step process makes waste management hassle-free and rewarding.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Sign Up</h3>
+                    <p>Create an account as a consumer or collector. It's quick, easy, and free.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Categorize & Schedule</h3>
+                    <p>Select your scrap categories, provide details, and schedule a pickup at your convenience.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Collection</h3>
+                    <p>Our verified collectors will pick up your scrap at the scheduled time and location.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Get Paid</h3>
+                    <p>Receive payment for your scrap and track its journey to industries for reuse.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- User Types Section -->
+    <section id="user-types" class="user-types">
+        <div class="container">
+            <div class="section-title">
+                <h2>Join Our Community</h2>
+                <p>ScrapoPlace connects different stakeholders in the waste management ecosystem for a sustainable future.</p>
+            </div>
+            <div class="user-types-grid">
+                <div class="user-type-card">
+                    <div class="category-img" style="background-image: url('https://tse3.mm.bing.net/th/id/OIP.s6-EDHDOWpf6jlHimJbsYQHaHa?pid=Api&P=0&h=180');" ></div>
+                    <div class="user-type-content">
+                        <h3>For Consumers</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Easy scrap categorization</li>
+                            <li><i class="fas fa-check-circle"></i> Convenient pickup scheduling</li>
+                            <li><i class="fas fa-check-circle"></i> Real-time request tracking</li>
+                            <li><i class="fas fa-check-circle"></i> Earn money from waste</li>
+                            <li><i class="fas fa-check-circle"></i> Support environmental sustainability</li>
+                        </ul>
+                        <a href="signupselection.html" class="btn btn-primary">Sign Up as Consumer</a>
+                    </div>
+                </div>
+                <div class="user-type-card">
+                    <div class="user-type-img collector-img"></div>
+                    <div class="user-type-content">
+                        <h3>For Collectors</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Access to pickup requests</li>
+                            <li><i class="fas fa-check-circle"></i> Efficient route planning</li>
+                            <li><i class="fas fa-check-circle"></i> Track collection history</li>
+                            <li><i class="fas fa-check-circle"></i> Connect with industries</li>
+                            <li><i class="fas fa-check-circle"></i> Grow your business</li>
+                        </ul>
+                        <a href="collectorsignup.html" class="btn btn-primary">Sign Up as Collector</a>
+                    </div>
+                </div>
+                <div class="user-type-card">
+                    <div class="user-type-img industry-img"></div>
+                    <div class="user-type-content">
+                        <h3>For Industries</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Source recycled materials</li>
+                            <li><i class="fas fa-check-circle"></i> Reduce raw material costs</li>
+                            <li><i class="fas fa-check-circle"></i> Support circular economy</li>
+                            <li><i class="fas fa-check-circle"></i> Enhance sustainability profile</li>
+                            <li><i class="fas fa-check-circle"></i> Reliable supply chain</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Partner With Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Transform Waste into Value?</h2>
+            <p>Join ScrapoPlace today and be part of the sustainable waste management revolution.</p>
+            <a href="#" class="btn btn-primary">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About ScrapoPlace</h3>
+                    <p>ScrapoPlace is a comprehensive waste management platform that connects consumers, collectors, and industries to promote a sustainable circular economy.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#user-types">User Types</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Pranveer Singh Institute of Technology, Kanpur</li>
+                        <li><i class="fas fa-phone"></i> +91 1234567890</li>
+                        <li><i class="fas fa-envelope"></i> info@scrapoplace.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 ScrapoPlace. All Rights Reserved. Designed by MCA Students, PSIT Kanpur.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Change header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.backgroundColor = '#fff';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Category tabs functionality
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const categoryCards = document.querySelectorAll('.category-card');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                const selectedCategory = this.getAttribute('data-category');
+                
+                // Show/hide category cards based on selection
+                categoryCards.forEach(card => {
+                    if (selectedCategory === 'all' || card.getAttribute('data-category') === selectedCategory) {
+                        card.style.display = 'block';
+                        // Add animation
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Schedule pickup button functionality
+        document.querySelectorAll('.category-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const categoryName = this.closest('.category-content').querySelector('h3').textContent;
+                alert(`Scheduling pickup for ${categoryName}. Please login or sign up to continue.`);
+            });
+        });
+
+        // Add animation to feature cards when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Set initial state for feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Set initial state for category cards
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Set initial state for user type cards
+        document.querySelectorAll('.user-type-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Simple form validation for login/signup buttons
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            if (button.textContent.includes('Sign Up') || button.textContent.includes('Login')) {
+                button.addEventListener('click', function(e) {
+                    // If this is a real link (anchor) with a non-empty, non-fragment href, allow navigation
+                    if (this.tagName === 'A') {
+                        const href = this.getAttribute('href');
+                        if (href && href.trim() !== '' && !href.startsWith('#')) {
+                            return; // let the browser follow the link
+                        }
+                    }
+
+                    // Otherwise, prevent default and show demo alert
+                    e.preventDefault();
+                    const userType = this.textContent.includes('Consumer') ? 'Consumer' : 
+                                    this.textContent.includes('Collector') ? 'Collector' : 'User';
+                    alert(`This would navigate to the ${userType} ${this.textContent.includes('Login') ? 'Login' : 'Sign Up'} page.`);
+                });
+            }
+        });
+
+        // Add interactive hover effect to step numbers
+        document.querySelectorAll('.step-number').forEach(step => {
+            step.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            step.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Add click event to CTA button
+        document.querySelector('.cta .btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            // Scroll to the user types section
+            document.querySelector('#user-types').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
